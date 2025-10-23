@@ -11,6 +11,7 @@ Setup Instructions
 1. Clone the repository:
    
    $ git clone https://github.com/Meghana2417/MyShop.git
+   
    $ cd MyShop
 
 3. Install dependencies:
@@ -19,14 +20,18 @@ Setup Instructions
 
 5. Local Run:
    - Development server:
-    \n $ npm run dev
+   
+    $ npm run dev
    - Build application:
-     $ npm run build
+
+      $ npm run build
    - Start server:
+
      $ npm start
 
 6. Access the application:
    Open browser and go to:
+
    http://localhost:3000
 
 Deployment Steps
@@ -36,16 +41,19 @@ Deployment Steps
    $ ssh -i <your-key.pem> ubuntu@<EC2-IP>
 
 3. Install Docker:
+
    $ sudo apt update
    $ sudo apt install docker.io -y
    $ sudo systemctl start docker
    $ sudo systemctl enable docker
 
-4. Build Docker image:
+5. Build Docker image:
+
    $ docker build -t myshop:latest .
 
-5. Run Docker container:
-   $ docker run -d -p 3000:3000 --name myshop \
+7. Run Docker container:
+
+    $ docker run -d -p 3000:3000 --name myshop \
      -e MONGODB_URL="<your-mongodb-uri>" \
      -e NEXTAUTH_URL="http://<EC2-IP>:3000" \
      -e NEXTAUTH_SECRET="myshopsecret123" \
@@ -54,12 +62,14 @@ Deployment Steps
      -e CLOUDINARY_SECRET="<cloud-secret>" \
      myshop:latest
 
-6. Accessing the Application:
+9. Accessing the Application:
    Open browser and go to:
+
    http://<EC2-IP>:3000
 
-7. Check logs:
-   $ docker logs -f myshop
+11. Check logs:
+
+    $ docker logs -f myshop
 
 Deployment Notes
 ----------------
