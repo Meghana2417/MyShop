@@ -1,6 +1,5 @@
-=========================================================
+
                     MyShop – Next.js Dockerized Application
-=========================================================
 
 Project Overview
 ----------------
@@ -10,7 +9,7 @@ Optionally, GitHub Actions can be used for CI/CD automation.
 Setup Instructions
 ------------------
 1. Clone the repository:
-   $ git clone https://github.com/pawanpk87/MyShop.git
+   $ git clone https://github.com/Meghana2417/MyShop.git
    $ cd MyShop
 
 2. Install dependencies:
