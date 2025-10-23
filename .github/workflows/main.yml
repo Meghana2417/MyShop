@@ -57,7 +57,7 @@ jobs:
             docker rm myshop || true
             docker run -d -p 3000:3000 --name myshop \
             -e MONGODB_URL="mongodb+srv://myshopuser:myshop123@cluster0.tn3hwnw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0" \
-            -e NEXTAUTH_URL="http://13.234.29.175:3000" \
+            -e NEXTAUTH_URL="http://13.204.20.48:3000" \
             -e NEXTAUTH_SECRET="secretId" \
             -e NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="Root" \
             -e NEXT_PUBLIC_CLOUDINARY_API_KEY="742991514563978" \
