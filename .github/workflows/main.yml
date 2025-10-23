@@ -3,24 +3,24 @@ name: CI/CD for Next.js App
 on:
   push:
     branches:
-      - main    # Trigger this workflow only when code is pushed to main branch
+      - main   
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout code from your GitHub repo
+      
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Set up Node.js (required to build Next.js app)
+     
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      # Step 3: Install dependencies
+     
       - name: Install dependencies
         run: npm ci
 
@@ -41,9 +41,9 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/nextjs-app:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/myshop:latest
 
-      # Step 7: Deploy the container on EC2 via SSH
+     
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1.2.0
         with:
@@ -51,7 +51,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/nextjs-app:latest
-            docker stop nextjs-app || true
-            docker rm nextjs-app || true
-            docker run -d -p 3000:3000 --name nextjs-app ${{ secrets.DOCKERHUB_USERNAME }}/nextjs-app:latest
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/myshop:latest
+            docker stop myshop || true
+            docker rm myshop || true
+            docker run -d -p 3000:3000 --name myshop ${{ secrets.DOCKERHUB_USERNAME }}/myshop:latest
