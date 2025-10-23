@@ -9,21 +9,23 @@ Optionally, GitHub Actions can be used for CI/CD automation.
 Setup Instructions
 ------------------
 1. Clone the repository:
+   
    $ git clone https://github.com/Meghana2417/MyShop.git
    $ cd MyShop
 
-2. Install dependencies:
+3. Install dependencies:
+   
    $ npm install
 
-3. Local Run:
+5. Local Run:
    - Development server:
-     $ npm run dev
+    \n $ npm run dev
    - Build application:
      $ npm run build
    - Start server:
      $ npm start
 
-4. Access the application:
+6. Access the application:
    Open browser and go to:
    http://localhost:3000
 
