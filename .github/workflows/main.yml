@@ -53,5 +53,9 @@ jobs:
           script: |
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/myshop:latest
             docker stop myshop || true
-            docker rm myshop || true
-            docker run -d -p 3000:3000 --name myshop ${{ secrets.DOCKERHUB_USERNAME }}/myshop:latest
+            docker rm myshop || truedocker run -d -p 3000:3000 --name my-shop \
+            -e MONGODB_URL="mongodb+srv://myshopuser:myshop123@cluster0.tn3hwnw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0" \
+            -e NEXTAUTH_URL="http://13.234.29.175:3000" \
+            -e NEXTAUTH_SECRET="secretId" \
+            meghana1724/my-shop:latest
+
