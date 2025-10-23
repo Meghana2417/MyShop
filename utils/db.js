@@ -22,9 +22,8 @@ async function disconnect() {
     if (process.env.NODE_ENV === "production") {
       await mongoose.disconnect();
       connection.isConnected = false;
-    } else {
-      console.log("not disconnected");
-    }
+      console.log("🔌 Disconnected from MongoDB (dev mode)");
+    } 
   }
 }
 
