@@ -51,6 +51,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
+            set -e
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/myshop:latest
             docker stop myshop || true
             docker rm myshop || truedocker run -d -p 3000:3000 --name myshop \
