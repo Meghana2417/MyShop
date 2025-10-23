@@ -1,69 +1,99 @@
-## :star2: About the Project
-MyShop is an Ecommerce web application built with Next.js and MongoDB.
+MyShop – Next.js Dockerized Application
+Project Overview
 
-## <a href="https://my-shop-ecommerce-website-gfpenuezh-pawanpk87.vercel.app/" target="_blank">LIVE DEMO 💥</a>
+A containerized Next.js e-commerce application deployed using Docker and optionally GitHub Actions for CI/CD.
 
-<!-- Screenshots -->
+Setup Instructions
 
-### :camera: Screenshots
+Clone the repository:
 
-![Screenshot (79)](https://user-images.githubusercontent.com/87040096/219966144-f29fe874-400c-44bd-8708-0026616c8c09.png)
+git clone https://github.com/pawanpk87/MyShop.git
+cd MyShop
 
-##
-![Screenshot (82)](https://user-images.githubusercontent.com/87040096/219966155-35a608b3-0c48-447b-b86d-2f8c21e153cc.png)
+Install dependencies:
 
-##
-![Screenshot (89)](https://user-images.githubusercontent.com/87040096/219966164-ec2ee88d-fce1-4004-a8bd-fb655523b8db.png)
+npm install
 
-##
-![Screenshot (90)](https://user-images.githubusercontent.com/87040096/219966172-ca106a05-4eee-4a73-813a-90b7ac8de21c.png)
+Local Run
+npm run dev       
+npm run build    
+npm start         
 
-### :space_invader: Tech Stack
+Access 
+Open browser: http://localhost:3000
 
-<details>
-  <summary>Client</summary>
-  <ul>
-    <li><a href="https://nextjs.org/">Next.js</a></li>
-    <li><a href="https://tailwindcss.com/">TailwindCSS</a></li>
-  </ul>
-</details>
+Deployment Steps
 
-<details>
-<summary>Database</summary>
-  <ul>
-    <li><a href="https://www.mongodb.com/">MongoDB</a></li>
-  </ul>
-</details>
-<br />
+Launch an EC2 instance (Ubuntu)
 
-<table>
-    <tr>
-        <td>
-<a href="#"><img src="https://user-images.githubusercontent.com/87040096/219964861-dfbad18b-7218-4347-9b8e-f233e1f23e55.png" alt="" width="30" height="30" /></a>
-        </td>
-        <td>
-<a href="#"><img src="https://user-images.githubusercontent.com/87040096/219965241-cbf7d1cb-272a-4e32-b085-6104d64fded5.png" alt="" width="30" height="30" /></a>
-        </td>
-        <td>
-<a href="#"><img src="https://user-images.githubusercontent.com/87040096/219964658-1e8a6ccf-ea9c-4253-b826-b095d0e3f947.png" alt="" width="30" height="30" /></a>
-        </td>
-        <td>
-<a href="#"><img src="https://user-images.githubusercontent.com/87040096/219965413-c12fd00c-0139-4ea7-82bf-ee417530a1aa.png" alt="" width="30" height="30" /></a>
-        </td>
-    </tr>
-</table>
+SSH into the instance:
 
-# 🏃‍♀️ Running
-
--   Clone repo Run `git clone https://github.com/pawanpk87/myShop-Ecommerce-website.git`
--   Run `npm i`
--   Run `npm run dev`
--   See `http://localhost:3000`
+ssh -i <your-key.pem> ubuntu@<ec2-ip>
 
 
-<!-- CONTACT -->
-## Contact
+Install Docker:
 
-Pawan Kumar Mehta - arowpk@gmail.com
+sudo apt update
+sudo apt install docker.io -y
+sudo systemctl start docker
+sudo systemctl enable docker
 
-Project Link: [https://github.com/pawanpk87/myShop-Ecommerce-website](https://github.com/pawanpk87/myShop-Ecommerce-website)
+Docker Run
+
+Build Docker image:
+
+docker build -t myshop:latest .
+Run Docker container:
+
+docker run -d -p 3000:3000 --name myshop \
+  -e MONGODB_URL="<your-mongodb-uri>" \
+  -e NEXTAUTH_URL="http://<your-ec2-ip>:3000" \
+  -e NEXTAUTH_SECRET="myshopsecret123" \
+  -e NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="<cloud-name>" \
+  -e NEXT_PUBLIC_CLOUDINARY_API_KEY="<api-key>" \
+  -e CLOUDINARY_SECRET="<cloud-secret>" \
+  myshop:latest
+
+  Accessing the Application
+
+  Browser URL: http://<your-ec2-ip>:3000
+
+
+Check logs:
+
+docker logs -f myshop
+
+Deployment Notes
+
+Use Elastic IP for EC2 to avoid changing URL after server restart
+
+Ensure MongoDB Atlas is accessible from EC2
+
+Cloudinary account should contain images for proper display
+
+
+
+GitHub Actions CI/CD Workflow
+
+Triggered on push to main branch
+
+Steps:
+
+Checkout repository
+
+Set up Node.js
+
+Install dependencies
+
+Build Next.js app
+
+Login to Docker Hub
+
+Build Docker image & push with proper tagging
+
+Deploy container on EC2 via SSH
+
+
+
+
+
