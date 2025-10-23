@@ -59,5 +59,8 @@ jobs:
             -e MONGODB_URL="mongodb+srv://myshopuser:myshop123@cluster0.tn3hwnw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0" \
             -e NEXTAUTH_URL="http://13.234.29.175:3000" \
             -e NEXTAUTH_SECRET="secretId" \
+            -e NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="Root" \
+            -e NEXT_PUBLIC_CLOUDINARY_API_KEY="742991514563978" \
+            -e CLOUDINARY_SECRET="6r7rxhyyWphbmoZLn8HRKLYH8R4" \
             meghana1724/myshop:latest
 
