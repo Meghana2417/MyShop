@@ -1,5 +1,4 @@
-
-                    MyShop – Next.js Dockerized Application
+MyShop – Next.js Dockerized Application
 
 Project Overview
 ----------------
@@ -10,69 +9,76 @@ Setup Instructions
 ------------------
 1. Clone the repository:
    
-   $ git clone https://github.com/Meghana2417/MyShop.git
+       $ git clone https://github.com/Meghana2417/MyShop.git
    
-   $ cd MyShop
+       $ cd MyShop
 
 3. Install dependencies:
    
-   $ npm install
+       $ npm install
 
 5. Local Run:
+   
    - Development server:
    
-    $ npm run dev
+         $ npm run dev
+     
    - Build application:
 
-      $ npm run build
+         $ npm run build
+     
    - Start server:
 
-     $ npm start
+         $ npm start
 
-6. Access the application:
+7. Access the application:
+   
    Open browser and go to:
 
-   http://localhost:3000
+       http://localhost:3000
 
 Deployment Steps
 ----------------
 1. Launch an EC2 instance (Ubuntu)
 2. SSH into the instance:
-   $ ssh -i <your-key.pem> ubuntu@<EC2-IP>
+   
+       $ ssh -i <your-key.pem> ubuntu@<EC2-IP>
 
-3. Install Docker:
+4. Install Docker:
 
-   $ sudo apt update
-   $ sudo apt install docker.io -y
-   $ sudo systemctl start docker
-   $ sudo systemctl enable docker
+       $ sudo apt update
+       $ sudo apt install docker.io -y
+       $ sudo systemctl start docker
+       $ sudo systemctl enable docker
 
 5. Build Docker image:
 
-   $ docker build -t myshop:latest .
+       $ docker build -t myshop:latest .
 
 7. Run Docker container:
 
-    $ docker run -d -p 3000:3000 --name myshop \
-     -e MONGODB_URL="<your-mongodb-uri>" \
-     -e NEXTAUTH_URL="http://<EC2-IP>:3000" \
-     -e NEXTAUTH_SECRET="myshopsecret123" \
-     -e NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="<cloud-name>" \
-     -e NEXT_PUBLIC_CLOUDINARY_API_KEY="<api-key>" \
-     -e CLOUDINARY_SECRET="<cloud-secret>" \
-     myshop:latest
+        $ docker run -d -p 3000:3000 --name myshop \
+         -e MONGODB_URL="<your-mongodb-url>" \
+         -e NEXTAUTH_URL="http://<EC2-IP>:3000" \
+         -e NEXTAUTH_SECRET="myshopsecret123" \
+         -e NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="<cloud-name>" \
+         -e NEXT_PUBLIC_CLOUDINARY_API_KEY="<api-key>" \
+         -e CLOUDINARY_SECRET="<cloud-secret>" \
+         myshop:latest
 
 9. Accessing the Application:
+    
    Open browser and go to:
 
-   http://<EC2-IP>:3000
+       http://<EC2-IP>:3000
 
 11. Check logs:
 
-    $ docker logs -f myshop
+        $ docker logs -f myshop
 
 Deployment Notes
 ----------------
+
 - Use Elastic IP for EC2 to avoid changing URL after server restart
 - Ensure MongoDB Atlas is accessible from EC2
 - Cloudinary account should contain images for proper display
@@ -80,7 +86,9 @@ Deployment Notes
 GitHub Actions CI/CD Workflow
 -----------------------------
 - Triggered on push to main branch
+  
 - Steps:
+  
   1. Checkout repository
   2. Set up Node.js
   3. Install dependencies
